@@ -139,3 +139,34 @@ ERROR: 3819: Check constraint 'studentpro_chk_1' is violated.
  MySQL  localhost:33060+ ssl  tharun  SQL > insert into studentpro values (12,"anjali",30, "anju@gmail.com", 9847573737);
 ERROR: 1062: Duplicate entry 'anju@gmail.com' for key 'studentpro.email'
  MySQL  localhost:33060+ ssl  tharun  SQL >
+
+
+
+
+
+
+ ####2222
+ -- Create the table
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    age INT CHECK (age >= 18),
+    city VARCHAR(50) DEFAULT 'Hyderabad'
+);
+
+-- Insert 5 sample records
+INSERT INTO students (name, email, age, city) 
+VALUES ('Ravi Kumar', 'ravi@example.com', 21, 'Delhi');
+
+INSERT INTO students (name, email, age) 
+VALUES ('Anjali Sharma', 'anjali@example.com', 19);
+
+INSERT INTO students (name, email, age, city) 
+VALUES ('Vikram Singh', 'vikram@example.com', 25, 'Mumbai');
+
+INSERT INTO students (name, email, age) 
+VALUES ('Priya Reddy', 'priya@example.com', 22);
+
+INSERT INTO students (name, email, age, city) 
+VALUES ('Rahul Mehta', 'rahul@example.com', 28, 'Chennai');
