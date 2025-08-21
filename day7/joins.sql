@@ -178,3 +178,130 @@ select e.empno, e.ename, d.dname, d.loc from emp e right join dept d on e.deptno
 | NULL   | NULL      | operations | boston   |
 +--------+-----------+------------+----------+
 
+#self join
+
+ select * from emp;
++-------+--------+-----------+------------+------+---------+---------+--------+
+| empno | ename  | job       | hiredate   | mgr  | sal     | comm    | deptno |
++-------+--------+-----------+------------+------+---------+---------+--------+
+|  7369 | smith  | clerk     | 1980-12-17 | 7902 |  800.00 |    NULL |     20 |
+|  7499 | allen  | salesman  | 1981-02-20 | 7698 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman  | 1981-02-22 | 7698 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager   | 1981-04-02 | 7839 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman  | 1981-09-28 | 7698 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager   | 1981-05-01 | 7839 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager   | 1981-06-09 | 7839 | 2450.00 |    NULL |     10 |
+|  7788 | scott  | analyst   | 1987-04-19 | 7566 | 3000.00 |    NULL |     20 |
+|  7839 | king   | president | 1981-11-17 | NULL | 5000.00 |    NULL |     10 |
+|  7844 | turner | salesman  | 1981-09-08 | 7698 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk     | 1987-05-23 | 7788 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk     | 1981-12-03 | 7698 |  950.00 |    NULL |     30 |
+|  7902 | ford   | analyst   | 1981-12-03 | 7566 | 3000.00 |    NULL |     20 |
+|  7934 | miller | clerk     | 1982-01-23 | 7782 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------------+------+---------+---------+--------+
+14 rows in set (0.0018 sec)
+ MySQL  localhost:33060+ ssl  joins  SQL > select e.ename as employee, m.ename as manager from emp e left join emp m on e.empno = m.mgr;
++----------+---------+
+| employee | manager |
++----------+---------+
+| smith    | NULL    |
+| allen    | NULL    |
+| ward     | NULL    |
+| jones    | ford    |
+| jones    | scott   |
+| martin   | NULL    |
+| blake    | james   |
+| blake    | turner  |
+| blake    | martin  |
+| blake    | ward    |
+| blake    | allen   |
+| clark    | miller  |
+| scott    | adams   |
+| king     | clark   |
+| king     | blake   |
+| king     | jones   |
+| turner   | NULL    |
+| adams    | NULL    |
+| james    | NULL    |
+| ford     | smith   |
+| miller   | NULL    |
++----------+---------+
+21 rows in set (0.0023 sec)
+ MySQL  localhost:33060+ ssl  joins  SQL > select e.ename as employee, m.ename as manager from emp e left join emp m on e.mgr = .empno;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.empno' at line 1
+ MySQL  localhost:33060+ ssl  joins  SQL > select e.ename as employee, m.ename as manager from emp e left join emp m on e.mgr = m.empno;
++----------+---------+
+| employee | manager |
++----------+---------+
+| smith    | ford    |
+| allen    | blake   |
+| ward     | blake   |
+| jones    | king    |
+| martin   | blake   |
+| blake    | king    |
+| clark    | king    |
+| scott    | jones   |
+| king     | NULL    |
+| turner   | blake   |
+| adams    | scott   |
+| james    | blake   |
+| ford     | jones   |
+| miller   | clark   |
++----------+---------+
+
+#cross join 
+
+select * from teacher;
++-----------+--------------+------------------+------------+----------------------------+----------+
+| TeacherID | Name         | Subject          | Phone      | Email                      | Salary   |
++-----------+--------------+------------------+------------+----------------------------+----------+
+|         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
++-----------+--------------+------------------+------------+----------------------------+----------+
+5 rows in set (0.0017 sec)
+ MySQL  localhost:33060+ ssl  joins  SQL > select * from student;
++-----------+--------------+-------+-----+------------+--------------------------+
+| StudentID | Name         | Class | Age | Phone      | Email                    |
++-----------+--------------+-------+-----+------------+--------------------------+
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |
++-----------+--------------+-------+-----+------------+--------------------------+
+5 rows in set (0.0017 sec)
+ MySQL  localhost:33060+ ssl  joins  SQL > select e.*, d.* from student e cross join teacher d;
++-----------+--------------+-------+-----+------------+--------------------------+-----------+--------------+------------------+------------+----------------------------+----------+
+| StudentID | Name         | Class | Age | Phone      | Email                    | TeacherID | Name         | Subject          | Phone      | Email                      | Salary   |
++-----------+--------------+-------+-----+------------+--------------------------+-----------+--------------+------------------+------------+----------------------------+----------+
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |         1 | Ravi Kumar   | Mathematics      | 9876543210 | ravi.maths@example.com     | 45000.00 |
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |         2 | Sita Rani    | English          | 9123456780 | sita.english@example.com   | 42000.00 |
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |         3 | Arjun Singh  | Science          | 9988776655 | arjun.science@example.com  | 48000.00 |
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |         4 | Lakshmi Devi | Social Studies   | 9090909090 | lakshmi.social@example.com | 40000.00 |
+|       105 | Vikram Singh | 9th   |  14 | 9876005555 | vikram.singh@example.com |         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
+|       104 | Sneha Rao    | 8th   |  13 | 9876004444 | sneha.rao@example.com    |         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
+|       103 | Rahul Mehta  | 10th  |  16 | 9876003333 | rahul.mehta@example.com  |         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
+|       102 | Priya Reddy  | 9th   |  14 | 9876002222 | priya.reddy@example.com  |         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
+|       101 | Amit Sharma  | 10th  |  15 | 9876001111 | amit.sharma@example.com  |         5 | Kiran Kumar  | Computer Science | 9876501234 | kiran.cs@example.com       | 50000.00 |
++-----------+--------------+-------+-----+------------+--------------------------+-----------+--------------+------------------+------------+----------------------------+----------+
+25 rows in set (0.0022 sec)
+
