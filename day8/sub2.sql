@@ -147,7 +147,7 @@ select ename, job from emp where job = any (select job from emp where deptno=10)
 | miller | clerk     |
 +--------+-----------+
 8 rows in set (0.0248 sec)
- MySQL  localhost:33060+ ssl  joins  SQL > select ename, job from emp where job in (select job from emp where deptno=10);
+ MySQL  localhost:33060+ ssl  joins  SQL > /../////////////////////////////////////////////////////////////////////////////select ename, job from emp where job in (select job from emp where deptno=10);
 +--------+-----------+
 | ename  | job       |
 +--------+-----------+
