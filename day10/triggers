@@ -1,0 +1,367 @@
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \c root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8 (X protocol)
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| mysql              |
+| nani               |
+| performance_schema |
+| sys                |
+| tharun             |
+| trigger            |
++--------------------+
+8 rows in set (0.0051 sec)
+ MySQL  localhost:33060+ ssl  SQL > create database triggers;
+Query OK, 1 row affected (0.0133 sec)
+ MySQL  localhost:33060+ ssl  SQL > use triggers;
+Default schema set to `triggers`.
+Fetching global names, object names from `triggers` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  triggers  SQL > -- Create DEPT table
+Query OK, 0 rows affected (0.0009 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > CREATE TABLE dept (
+                                           ->     deptno INT PRIMARY KEY,
+                                           ->     dname VARCHAR(20),
+                                           ->     loc VARCHAR(20)
+                                           -> );
+Query OK, 0 rows affected (0.0384 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > -- Insert data into DEPT
+Query OK, 0 rows affected (0.0007 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO dept (deptno, dname, loc) VALUES (10, 'ACCOUNTING', 'NEW YORK');
+Query OK, 1 row affected (0.0166 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO dept (deptno, dname, loc) VALUES (20, 'RESEARCH', 'DALLAS');
+Query OK, 1 row affected (0.0054 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO dept (deptno, dname, loc) VALUES (30, 'SALES', 'CHICAGO');
+Query OK, 1 row affected (0.0035 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO dept (deptno, dname, loc) VALUES (40, 'OPERATIONS', 'BOSTON');
+Query OK, 1 row affected (0.0035 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > -- Create EMP table
+Query OK, 0 rows affected (0.0005 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > CREATE TABLE emp (
+                                           ->     empno INT PRIMARY KEY,
+                                           ->     ename VARCHAR(20),
+                                           ->     job VARCHAR(20),
+                                           ->     mgr INT,
+                                           ->     hiredate DATE,
+                                           ->     sal DECIMAL(10,2),
+                                           ->     comm DECIMAL(10,2),
+                                           ->     deptno INT,
+                                           ->     FOREIGN KEY (deptno) REFERENCES dept(deptno)
+                                           -> );
+Query OK, 0 rows affected (0.0652 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > -- Insert data into EMP
+Query OK, 0 rows affected (0.0005 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7369, 'SMITH', 'CLERK', 7902, '1980-12-17', 800, NULL, 20);
+Query OK, 1 row affected (0.0067 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7499, 'ALLEN', 'SALESMAN', 7698, '1981-02-20', 1600, 300, 30);
+Query OK, 1 row affected (0.0031 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7521, 'WARD', 'SALESMAN', 7698, '1981-02-22', 1250, 500, 30);
+Query OK, 1 row affected (0.0033 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7566, 'JONES', 'MANAGER', 7839, '1981-04-02', 2975, NULL, 20);
+Query OK, 1 row affected (0.0032 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7654, 'MARTIN', 'SALESMAN', 7698, '1981-09-28', 1250, 1400, 30);
+Query OK, 1 row affected (0.0032 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7698, 'BLAKE', 'MANAGER', 7839, '1981-05-01', 2850, NULL, 30);
+Query OK, 1 row affected (0.0034 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7782, 'CLARK', 'MANAGER', 7839, '1981-06-09', 2450, NULL, 10);
+Query OK, 1 row affected (0.0034 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7788, 'SCOTT', 'ANALYST', 7566, '1987-04-19', 3000, NULL, 20);
+Query OK, 1 row affected (0.0043 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7839, 'KING', 'PRESIDENT', NULL, '1981-11-17', 5000, NULL, 10);
+Query OK, 1 row affected (0.0030 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7844, 'TURNER', 'SALESMAN', 7698, '1981-09-08', 1500, 0, 30);
+Query OK, 1 row affected (0.0031 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7876, 'ADAMS', 'CLERK', 7788, '1987-05-23', 1100, NULL, 20);
+Query OK, 1 row affected (0.0038 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7900, 'JAMES', 'CLERK', 7698, '1981-12-03', 950, NULL, 30);
+Query OK, 1 row affected (0.0045 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7902, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000, NULL, 20);
+Query OK, 1 row affected (0.0065 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > INSERT INTO emp VALUES (7934, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300, NULL, 10);
+Query OK, 1 row affected (0.0471 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > show tables;
++--------------------+
+| Tables_in_triggers |
++--------------------+
+| dept               |
+| emp                |
++--------------------+
+2 rows in set (0.0035 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > create table infor_trigger (id int auto_increment primary key , event_type varchar(60), info varchar(50), login_time timestamp default timestamp current_timestamp());
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_timestamp())' at line 1
+ MySQL  localhost:33060+ ssl  triggers  SQL > create table infor_trigger (id int auto_increment primary key , event_type varchar(60), info varchar(50), login_time timestamp default timestamp current_timestamp);
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_timestamp)' at line 1
+ MySQL  localhost:33060+ ssl  triggers  SQL > create table infor_trigger (id int auto_increment primary key , event_type varchar(60), info varchar(50), login_time timestamp default  current_timestamp);
+Query OK, 0 rows affected (0.0560 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > show tables;
++--------------------+
+| Tables_in_triggers |
++--------------------+
+| dept               |
+| emp                |
+| infor_trigger      |
++--------------------+
+3 rows in set (0.0034 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > delimiter $$
+ MySQL  localhost:33060+ ssl  triggers  SQL > create trigger name
+                                           -> before insert on emp
+                                           -> for each row
+                                           -> begin
+                                           -> set new.ename=trim(new.ename);
+                                           -> insert into infor_trigger(event_type,info) values ("insert before on", new.name);
+                                           -> end $$
+ERROR: 1054: Unknown column 'name' in 'NEW'
+ MySQL  localhost:33060+ ssl  triggers  SQL > create trigger name before insert on emp for each row begin set new.ename=trim(new.ename); insert into infor_trigger(event_type,info) values ("insert before on", new.name); end $$ delimiter;
+ERROR: 1054: Unknown column 'name' in 'NEW'
+ERROR: DELIMITER must be followed by a 'delimiter' character or string
+ MySQL  localhost:33060+ ssl  triggers  SQL > create trigger name before insert on emp for each row begin set new.ename=trim(new.ename); insert into infor_trigger(event_type,info) values ("insert before on", new.name); end $$ delimiter ;
+ERROR: 1054: Unknown column 'name' in 'NEW'
+ MySQL  localhost:33060+ ssl  triggers  SQL > create trigger name before insert on emp for each row begin set NEW.ename=trim(NEW.ename); insert into infor_trigger(event_type,info) values ("insert before on", NEW.name); end $$ delimiter ;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR: 1054: Unknown column 'NEW.name' in 'field list'
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end $$ delimiter' at line 1
+ MySQL  localhost:33060+ ssl  triggers  SQL > DELIMITER $$
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > CREATE TRIGGER before_emp_insert
+                                           -> BEFORE INSERT
+                                           -> ON emp
+                                           -> FOR EACH ROW
+                                           -> BEGIN
+                                           ->    -- Trim spaces from employee name
+                                           ->    SET NEW.ename = TRIM(NEW.ename);
+                                           ->
+                                           ->    -- Log info into infor_trigger table
+                                           ->    INSERT INTO infor_trigger (event_type, info)
+                                           ->    VALUES (
+                                           ->       'insert before on',
+                                           ->       NEW.ename
+                                           ->    );
+                                           -> END$$
+Query OK, 0 rows affected (0.0334 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > DELIMITER ;
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.0259 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > insert into emp (ename,empno) values ("     nani),6767);
+                                           ">
+                                           "> ^C
+ MySQL  localhost:33060+ ssl  triggers  SQL > insert into emp (empno,ename) values (1234, "    na  ni");
+Query OK, 1 row affected (0.0293 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from infor_trigger;
++----+------------------+--------+---------------------+
+| id | event_type       | info   | login_time          |
++----+------------------+--------+---------------------+
+|  1 | insert before on | na  ni | 2025-09-03 11:12:01 |
++----+------------------+--------+---------------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  1234 | na  ni | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+15 rows in set (0.0012 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >  insert into emp (empno,ename) values (1234, "    nani");
+ERROR: 1062: Duplicate entry '1234' for key 'emp.PRIMARY'
+ MySQL  localhost:33060+ ssl  triggers  SQL > insert into emp (empno,ename) values (124, "    nanii");
+Query OK, 1 row affected (0.0272 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from infor_trigger;
++----+------------------+--------+---------------------+
+| id | event_type       | info   | login_time          |
++----+------------------+--------+---------------------+
+|  1 | insert before on | na  ni | 2025-09-03 11:12:01 |
+|  3 | insert before on | nanii  | 2025-09-03 11:12:57 |
++----+------------------+--------+---------------------+
+2 rows in set (0.0011 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|   124 | nanii  | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  1234 | na  ni | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.0014 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+
+
+ 
+ MySQL  localhost:33060+ ssl  triggers  SQL > delimiter $$
+ MySQL  localhost:33060+ ssl  triggers  SQL > create trigger Tri_nani
+                                           -> after update on emp
+                                           -> for each row
+                                           -> begin
+                                           -> insert into infor_trigger (event_type, info) values ("after update on emp", concat("old sal=",old.sal,"new sal=",new.sal));
+                                           -> end$$
+Query OK, 0 rows affected (0.0484 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > update emp set sal=500 where empno=124;
+                                           -> ^C
+ MySQL  localhost:33060+ ssl  triggers  SQL > update emp set sal=sal+1100 where ename="smith";
+Query OK, 1 row affected (0.0470 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from infor_trigger;
++----+---------------------+-------------------------------+---------------------+
+| id | event_type          | info                          | login_time          |
++----+---------------------+-------------------------------+---------------------+
+|  1 | insert before on    | na  ni                        | 2025-09-03 11:12:01 |
+|  3 | insert before on    | nanii                         | 2025-09-03 11:12:57 |
+|  4 | after update on emp | old sal=800.00new sal=1900.00 | 2025-09-03 11:22:41 |
++----+---------------------+-------------------------------+---------------------+
+3 rows in set (0.0011 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|   124 | nanii  | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  1234 | na  ni | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1900.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.0014 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+
+ 
+ MySQL  localhost:33060+ ssl  triggers  SQL > DELIMITER $$
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > CREATE TRIGGER before_emp_delete
+                                           -> BEFORE DELETE ON emp
+                                           -> FOR EACH ROW
+                                           -> BEGIN
+                                           ->    IF OLD.job = 'MANAGER' THEN
+                                           ->       SIGNAL SQLSTATE '45000'
+                                           ->       SET MESSAGE_TEXT = 'Managers cannot be deleted!';
+                                           ->    END IF;
+                                           -> END$$
+Query OK, 0 rows affected (0.0133 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL >
+ MySQL  localhost:33060+ ssl  triggers  SQL > DELIMITER ;
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|   124 | nanii  | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  1234 | na  ni | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1900.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.0037 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > delete from emp where empno="7900";
+Query OK, 1 row affected (0.0091 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from infor_trigger;
++----+---------------------+-------------------------------+---------------------+
+| id | event_type          | info                          | login_time          |
++----+---------------------+-------------------------------+---------------------+
+|  1 | insert before on    | na  ni                        | 2025-09-03 11:12:01 |
+|  3 | insert before on    | nanii                         | 2025-09-03 11:12:57 |
+|  4 | after update on emp | old sal=800.00new sal=1900.00 | 2025-09-03 11:22:41 |
++----+---------------------+-------------------------------+---------------------+
+3 rows in set (0.0015 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|   124 | nanii  | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  1234 | na  ni | NULL      | NULL | NULL       |    NULL |    NULL |   NULL |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1900.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+15 rows in set (0.0015 sec)
+ MySQL  localhost:33060+ ssl  triggers  SQL > delete from emp where job="manager";
+ ERROR: 1644: Managers cannot be deleted!
