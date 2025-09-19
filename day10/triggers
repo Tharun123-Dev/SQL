@@ -364,4 +364,4 @@ Query OK, 1 row affected (0.0091 sec)
 +-------+--------+-----------+------+------------+---------+---------+--------+
 15 rows in set (0.0015 sec)
  MySQL  localhost:33060+ ssl  triggers  SQL > delete from emp where job="manager";
- ERROR: 1644: Managers cannot be deleted!
+ ERROR: 1644: Managers cannot be deleted!.
